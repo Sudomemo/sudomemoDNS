@@ -1,3 +1,7 @@
+# sudomemoDNS v1.0
+# (c) 2019 Austin Burk/Sudomemo
+# All rights reserved
+
 from datetime import datetime
 from time import sleep
 
