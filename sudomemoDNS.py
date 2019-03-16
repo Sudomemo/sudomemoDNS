@@ -22,7 +22,7 @@ def get_platform():
 
     return platforms[sys.platform]
 
-SUDOMEMODNS_VERSION = "0.1"
+SUDOMEMODNS_VERSION = "1.0"
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -62,7 +62,10 @@ print("Secondary DNS: 8.8.8.8")
 
 print("All other settings should match what is shown at the above URL.\n")
 
-print("#### Starting up ####\n")
+print("#### Getting Help ####\n")
+print("Need help? Visit our Discord server or check out https://support.sudomemo.net.\n")
+
+print("[INFO] Starting up")
 
 TYPE_LOOKUP = {
     A: QTYPE.A,
@@ -195,6 +198,9 @@ class Resolver:
 
 resolver = Resolver()
 dnsLogger = SudomemoDNSLogger()
+
+print("[INFO] Detected operating system:", get_platform());
+
 if get_platform() == 'linux':
   print("[INFO] Please note that you will have to run this as root or with permissions to bind to UDP port 53.")
   print("[INFO] If you aren't seeing any requests, check that this is the case first with lsof -i:53 (requires lsof)")
@@ -204,11 +210,10 @@ elif get_platform() == 'OS X':
   print("[INFO] If you aren't seeing any requests, check that this is the case first with lsof -i:53 (requires lsof)")
   print("[INFO] To run as root, prefix the command with 'sudo'")
 elif get_platform() == 'Windows':
-  print("[INFO] Please note: On Windows, you will have to run this as Administrator.")
-  print("[INFO] Right click on the .exe and select 'Run as administrator' to do so.")
+  print("[INFO] Please note: On Windows, you may have to allow this application through")
+  print("[INFO] the firewall. If so, a popup will appear in a moment.")
   print("[INFO] If you aren't seeing any requests, make sure you have done so first.")
-  print("[INFO] Disregard this message if you have already done so; as the message will always show")
-
+  print("[INFO] Disregard this message if you have already done so.")
 
 try:
   servers = [
