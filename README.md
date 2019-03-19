@@ -20,7 +20,7 @@ Run the .exe provided in this release. You may have to click past a warning from
 
 # Running on anything else:
 
-Required packages (installable by npm): requests, dnslib
+Required packages (installable with pip): requests, dnslib
 Required Python version: 3+, tested with 3.6
 
     sudo <name of your python binary> sudomemoDNS.py
