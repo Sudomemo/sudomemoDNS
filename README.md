@@ -68,7 +68,7 @@ then you can enter it as follows:
 
 # Building on Windows
 
-Install dnslib and requests via npm (as well as pyinstaller) and then build with pyinstaller:
+Install dnslib and requests via pip (as well as pyinstaller) and then build with pyinstaller:
 
 C:\Users\Administrator\sudomemo-dns>C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Scripts\pyinstaller.exe sud
 omemoDNS_v1.0.spec
