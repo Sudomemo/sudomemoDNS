@@ -1,5 +1,5 @@
 ![sudomemoDNS Logo](/sudomemoDNS_banner.png)
-## This server will allow you to connect to Sudomemo when your Internet Service Provider does not work with custom DNS.
+### This server will allow you to connect to Sudomemo when your Internet Service Provider does not work with custom DNS.
 
 ## Setup
 
