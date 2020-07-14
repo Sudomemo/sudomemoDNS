@@ -55,4 +55,5 @@ then you can enter it as follows:
 
 Install dnslib, requests, and pyinstaller via pip, then modify the paths in the spec file to where sudomemoDNS and the sudomemoDNS icon is stored.
 Then, run the following as an administrator:
+
     pyinstaller.exe sudomemoDNS_v1.1.spec
