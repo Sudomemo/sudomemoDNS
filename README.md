@@ -28,7 +28,8 @@ The following will display when you start it up:
     +===============================+
 
     == Welcome to SudomemoDNS! ==
-    This server will allow you to connect to Sudomemo when your Internet Service Provider does not work with custom DNS.
+    This server will allow you to connect to Sudomemo when your Internet Service Provider
+    does not work with custom DNS.
 
     == How To Use ==
     First, make sure that your console is connected to the same network as this computer.
@@ -43,9 +44,11 @@ The following will display when you start it up:
     Need help? Visit our Discord server or check out https://support.sudomemo.net
 
 When entering your DNS settings, if the Primary DNS is displayed like this (this is an example):
+
 192.168.1.7 
 
 then you can enter it as follows:
+
 192.168.001.007
 
 ## Building on Windows
