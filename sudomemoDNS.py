@@ -1,4 +1,4 @@
-# SudomemoDNS v1.1
+# sudomemoDNS v1.1
 # (c) 2019-2020 Austin Burk / Team Sudomemo
 # All rights reserved
 
@@ -49,7 +49,7 @@ print("|      Sudomemo DNS Server      |")
 print("|          Version " + SUDOMEMODNS_VERSION + "          |")
 print("+===============================+\n")
 
-print("== Welcome to SudomemoDNS! ==") 
+print("== Welcome to sudomemoDNS! ==") 
 print("This server will allow you to connect to Sudomemo when your Internet Service Provider does not work with custom DNS.\n")
 
 print("== How To Use ==")
@@ -64,7 +64,7 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 print("== Getting Help ==")
 print("Need help? Visit our Discord server or check out https://support.sudomemo.net\n")
 
-print("[INFO] Starting SudomemoDNS...")
+print("[INFO] Starting sudomemoDNS...")
 
 TYPE_LOOKUP = {
     A: QTYPE.A,
@@ -219,7 +219,7 @@ except PermissionError:
   sys.exit(1)
 
 
-print("[INFO] SudomemoDNS is ready. Now waiting for DNS requests from your console...")
+print("[INFO] sudomemoDNS is ready. Now waiting for DNS requests from your console...")
 
 if __name__ == '__main__':
     for s in servers:

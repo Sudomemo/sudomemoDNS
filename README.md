@@ -27,9 +27,9 @@ The following will display when you start it up:
     |          Version 1.1          |
     +===============================+
 
-    == Welcome to SudomemoDNS! ==
-    This server will allow you to connect to Sudomemo when your Internet Service Provider
-    does not work with custom DNS.
+    == Welcome to sudomemoDNS! ==
+    This server will allow you to connect to Sudomemo when your Internet Service Provider does
+    not work with custom DNS.
 
     == How To Use ==
     First, make sure that your console is connected to the same network as this computer.
