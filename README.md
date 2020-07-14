@@ -4,7 +4,9 @@
 ## Setup
 
 The setup process does not differ from what is shown at https://flipnot.es/setup except for the values to enter in your custom DNS settings.
+
 First, make sure that your console is connected to the same network as this computer.
+
 Please submit any issues to Sudomemo Support.
 
 ## Running on Windows:
@@ -13,7 +15,8 @@ Run the .exe provided in this release. You may have to click past a warning from
 
 ## Running on anything else:
 
-Required packages (installable with pip): requests, dnslib
+Required packages (installable with pip): `requests`, `dnslib`
+
 Required Python version: 3+, tested with 3.6
 
     sudo <name of your python binary> sudomemoDNS.py
@@ -54,6 +57,7 @@ then you can enter it as follows:
 ## Building on Windows
 
 Install dnslib, requests, and pyinstaller via pip, then modify the paths in the spec file to where sudomemoDNS and the sudomemoDNS icon is stored.
+
 Then, run the following as an administrator:
 
     pyinstaller.exe sudomemoDNS_v1.1.spec
