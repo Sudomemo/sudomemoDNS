@@ -33,7 +33,7 @@ The following will display when you start it up:
     == How To Use ==
     First, make sure that your console is connected to the same network as this computer.
 
-    Then, put these settings for DNS on your console:
+    Then, put these settings in for DNS on your console:
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Primary DNS:   XXX.XXX.XXX.XXX (NOTE: This value will be unique when you run the program)
     Secondary DNS: 8.8.8.8

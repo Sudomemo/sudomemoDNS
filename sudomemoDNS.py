@@ -55,7 +55,7 @@ print("This server will allow you to connect to Sudomemo when your Internet Serv
 print("== How To Use ==")
 print("First, make sure that your console is connected to the same network as this computer.\n")
 
-print("Then, put these settings for DNS on your console:")
+print("Then, put these settings in for DNS on your console:")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Primary DNS:  ",MY_IP)
 print("Secondary DNS: 8.8.8.8")
