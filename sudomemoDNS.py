@@ -1,5 +1,5 @@
-# sudomemoDNS v1.0
-# (c) 2019 Austin Burk/Sudomemo
+# SudomemoDNS v1.1
+# (c) 2019-2020 Austin Burk / Team Sudomemo
 # All rights reserved
 
 from datetime import datetime
@@ -18,7 +18,7 @@ def get_platform():
     platforms = {
         'linux1' : 'Linux',
         'linux2' : 'Linux',
-        'darwin' : 'OS X',
+        'darwin' : 'macOS',
         'win32' : 'Windows'
     }
     if sys.platform not in platforms:
@@ -26,7 +26,7 @@ def get_platform():
 
     return platforms[sys.platform]
 
-SUDOMEMODNS_VERSION = "1.0"
+SUDOMEMODNS_VERSION = "1.1"
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -49,27 +49,22 @@ print("|      Sudomemo DNS Server      |")
 print("|          Version " + SUDOMEMODNS_VERSION + "          |")
 print("+===============================+\n")
 
-print("Hello! This server will allow you to connect to Sudomemo when")
-print("your Internet Service Provider does not work with custom DNS.\n")
+print("== Welcome to SudomemoDNS! ==") 
+print("This server will allow you to connect to Sudomemo when your Internet Service Provider does not work with custom DNS.\n")
 
-print("#### How To Use ####\n")
-print("The setup process does not differ from what is shown at")
-print("https://support.sudomemo.net/setup except for the values")
-print("to enter in your custom DNS settings.\n")
+print("== How To Use ==")
+print("First, make sure that your console is connected to the same network as this computer.\n")
 
-print("First, make sure that your Nintendo DSi is connected to the")
-print("same network as this computer.")
-
-print("\nHere are the settings you will put in for DNS on your Nintendo DSi:\n")
+print("Then, put these settings for DNS on your console:")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Primary DNS:  ",MY_IP)
 print("Secondary DNS: 8.8.8.8")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-print("All other settings should match what is shown at the above URL.\n")
+print("== Getting Help ==")
+print("Need help? Visit our Discord server or check out https://support.sudomemo.net\n")
 
-print("#### Getting Help ####\n")
-print("Need help? Visit our Discord server or check out https://support.sudomemo.net.\n")
-
-print("[INFO] Starting up")
+print("[INFO] Starting SudomemoDNS...")
 
 TYPE_LOOKUP = {
     A: QTYPE.A,
@@ -89,16 +84,15 @@ class SudomemoDNSLogger(object):
     def log_send(self, handler, data):
         pass
     def log_request(self, handler, request):
-        print("[INFO] Received DNS request from DSi at " + handler.client_address[0])
+        print("[INFO] Received DNS request from console at " + handler.client_address[0])
     def log_reply(self, handler, reply):
-        print("[INFO] Sent response to DSi at " + handler.client_address[0])
+        print("[INFO] Sent response to console at " + handler.client_address[0])
     def log_error(self, handler, e):
-        logger.error("[INFO] Invalid DNS request from " + handler.client_address[0])
+        print("[ERROR] Invalid DNS request from " + handler.client_address[0])
     def log_truncated(self, handler, reply):
         pass
     def log_data(self, dnsobj):
         pass
-
 
 class Record:
     def __init__(self, rdata_type, *args, rtype=None, rname=None, ttl=None, **kwargs):
@@ -154,17 +148,15 @@ ZONES = {}
 try:
   get_zones = requests.get("https://www.sudomemo.net/api/dns_zones.json", headers={'User-Agent': 'SudomemoDNS/' + SUDOMEMODNS_VERSION + ' (' + get_platform() + ')'})
 except requests.exceptions.Timeout:
-  print("[ERROR] Couldn't load DNS data: connection to Sudomemo timed out.")
-  print("[ERROR] Are you connected to the Internet?")
+  print("[ERROR] Unable to load DNS data: Connection to Sudomemo timed out. Are you connected to the Internet?")
 except requests.exceptions.RequestException as e:
-  print("[ERROR] Couldn't load DNS data.")
+  print("[ERROR] Unable load DNS data.")
   print("[ERROR] Exception: ",e)
   sys.exit(1)
 try:
   zones = json.loads(get_zones.text)
 except ValueError as e:
-  print("[ERROR] Couldn't load DNS data: invalid response from server")
-  print("[ERROR] Check that you can visit sudomemo.net")
+  print("[ERROR] Unable load DNS data: Invalid response from server. Check that you can visit sudomemo.net")
 
 for zone in zones:
   if zone["type"] == "a":
@@ -203,21 +195,19 @@ class Resolver:
 resolver = Resolver()
 dnsLogger = SudomemoDNSLogger()
 
-print("[INFO] Detected operating system:", get_platform());
+print("[INFO] Detected operating system:", get_platform())
 
 if get_platform() == 'linux':
   print("[INFO] Please note that you will have to run this as root or with permissions to bind to UDP port 53.")
   print("[INFO] If you aren't seeing any requests, check that this is the case first with lsof -i:53 (requires lsof)")
   print("[INFO] To run as root, prefix the command with 'sudo'")
-elif get_platform() == 'OS X':
+elif get_platform() == 'macOS':
   print("[INFO] Please note that you will have to run this as root or with permissions to bind to UDP port 53.")
   print("[INFO] If you aren't seeing any requests, check that this is the case first with lsof -i:53 (requires lsof)")
   print("[INFO] To run as root, prefix the command with 'sudo'")
 elif get_platform() == 'Windows':
-  print("[INFO] Please note: On Windows, you may have to allow this application through")
-  print("[INFO] the firewall. If so, a popup will appear in a moment.")
-  print("[INFO] If you aren't seeing any requests, make sure you have done so first.")
-  print("[INFO] Disregard this message if you have already done so.")
+  print("[INFO] Please note that you may have to allow this application through the firewall. If so, a popup will appear in a moment.")
+  print("[INFO] If you are not seeing any requests, make sure you have allowed this application through the firewall. If you have already done so, disregard this message.")
 
 try:
   servers = [
@@ -225,13 +215,11 @@ try:
     DNSServer(resolver=resolver, port=53, address=MY_IP, tcp=False, logger=dnsLogger),
   ]
 except PermissionError:
-  print("[ERROR] Permission error: check that you are running this as Administrator or root")
+  print("[ERROR] Permission error: Check that you are running this as an administrator or root")
   sys.exit(1)
 
 
-print("[INFO] Starting Sudomemo DNS server.")
-
-print("[INFO] Now waiting for DNS requests from your Nintendo DSi System.")
+print("[INFO] SudomemoDNS is ready. Now waiting for DNS requests from your console...")
 
 if __name__ == '__main__':
     for s in servers:
