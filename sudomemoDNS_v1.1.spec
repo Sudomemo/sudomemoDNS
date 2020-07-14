@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['sudomemoDNS.py'],
-             pathex=['D:\\Libraries\\Documents\\SudomemoDNS'],
+             pathex=['C:\\PATH\\TO\\SUDOMEMODNS'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -29,4 +29,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=True , icon='D:\\Libraries\\Documents\\SudomemoDNS\\sudomemoDNS_icon.ico')
+          console=True , icon='C:\\PATH\\TO\\SUDOMEMODNS\\ICON.ico')
