@@ -18,7 +18,7 @@ Required Python version: 3+, tested with 3.6
 
     sudo <name of your python binary> sudomemoDNS.py
 
-# What you'll see when it starts up
+## What you'll see when it starts up
 
 The following will display when you start it up:
 
