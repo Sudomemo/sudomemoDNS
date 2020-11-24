@@ -1,6 +1,4 @@
-# sudomemoDNS v1.1
-# (c) 2019-2020 Austin Burk / Team Sudomemo
-# All rights reserved
+# sudomemoDNS
 
 from datetime import datetime
 from time import sleep
@@ -26,7 +24,7 @@ def get_platform():
 
     return platforms[sys.platform]
 
-SUDOMEMODNS_VERSION = "1.1"
+SUDOMEMODNS_VERSION = "1.2"
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

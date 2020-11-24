@@ -27,7 +27,7 @@ The following will display when you start it up:
 
     +===============================+
     |      Sudomemo DNS Server      |
-    |          Version 1.1          |
+    |          Version 1.2          |
     +===============================+
 
     == Welcome to sudomemoDNS! ==
@@ -60,4 +60,4 @@ Install dnslib, requests, and pyinstaller via pip, then modify the paths in the 
 
 Then, run the following as an administrator:
 
-    pyinstaller.exe sudomemoDNS_v1.1.spec
+    pyinstaller.exe sudomemoDNS_v1.2.spec
