@@ -1,16 +1,17 @@
 # sudomemoDNS
 
 from datetime import datetime
+from json import loads
+from socket import socket, AF_INET, SOCK_DGRAM
+from sys import platform
 from time import sleep
 
-from dnslib import DNSLabel, QTYPE, RD, RR
 from dnslib import A, AAAA, CNAME, MX, NS, SOA, TXT
+from dnslib import DNSLabel, QTYPE, RD, RR
 from dnslib.server import DNSServer
-
-import socket
-import requests
-import json
-import sys
+from requests import get
+from requests.exceptions import RequestException
+from requests.exceptions import Timeout
 
 
 def get_platform():
@@ -20,10 +21,10 @@ def get_platform():
         'darwin': 'macOS',
         'win32': 'Windows'
     }
-    if sys.platform not in platforms:
-        return sys.platform
+    if platform not in platforms:
+        return platform
 
-    return platforms[sys.platform]
+    return platforms[platform]
 
 
 SUDOMEMODNS_VERSION = "1.2.1"
@@ -37,7 +38,7 @@ def format_ip(address):
 
 
 def get_ip():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s = socket(AF_INET, SOCK_DGRAM)
     try:
         # doesn't even have to be reachable
         s.connect(('10.255.255.255', 1))
@@ -164,16 +165,16 @@ class Record:
 ZONES = {}
 
 try:
-    get_zones = requests.get("https://www.sudomemo.net/api/dns_zones.json",
-                             headers={'User-Agent': 'SudomemoDNS/' + SUDOMEMODNS_VERSION + ' (' + get_platform() + ')'})
-except requests.exceptions.Timeout:
+    get_zones = get("https://www.sudomemo.net/api/dns_zones.json",
+                    headers={'User-Agent': 'SudomemoDNS/' + SUDOMEMODNS_VERSION + ' (' + get_platform() + ')'})
+except Timeout:
     print("[ERROR] Unable to load DNS data: Connection to Sudomemo timed out. Are you connected to the Internet?")
-except requests.exceptions.RequestException as e:
+except RequestException as e:
     print("[ERROR] Unable load DNS data.")
     print("[ERROR] Exception: ", e)
-    sys.exit(1)
+    exit(1)
 try:
-    zones = json.loads(get_zones.text)
+    zones = loads(get_zones.text)
 except ValueError as e:
     print("[ERROR] Unable load DNS data: Invalid response from server. Check that you can visit sudomemo.net")
 
@@ -227,8 +228,10 @@ elif get_platform() == 'macOS':
     print("[INFO] If you aren't seeing any requests, check that this is the case first with lsof -i:53 (requires lsof)")
     print("[INFO] To run as root, prefix the command with 'sudo'")
 elif get_platform() == 'Windows':
-    print("[INFO] Please note that you may have to allow this application through the firewall. If so, a popup will appear in a moment.")
-    print("[INFO] If you are not seeing any requests, make sure you have allowed this application through the firewall. If you have already done so, disregard this message.")
+    print(
+        "[INFO] Please note that you may have to allow this application through the firewall. If so, a popup will appear in a moment.")
+    print(
+        "[INFO] If you are not seeing any requests, make sure you have allowed this application through the firewall. If you have already done so, disregard this message.")
 
 try:
     servers = [
@@ -238,7 +241,7 @@ try:
 
 except PermissionError:
     print("[ERROR] Permission error: Check that you are running this as an administrator or root")
-    sys.exit(1)
+    exit(1)
 
 print("[INFO] sudomemoDNS is ready. Now waiting for DNS requests from your console...")
 
