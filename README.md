@@ -50,12 +50,18 @@ Note: `python3` is assumed to be the name of your python binary, if it is not th
 
 ## Building on Windows
 
-- Install dnslib, requests, and pyinstaller via the following command as an administrator
+- Install Python 3.6+ (preferably 3.9). Make sure to install the x86 version for 32 bit targets. 
 
-      python -m pip install -r requirements.txt pyinstaller
+- Install all requirements via the following command as an administrator
 
-- Modify the paths in all caps in `sudomemoDNS_v1.2.1.spec` to where sudomemoDNS and the sudomemoDNS icon is stored.
+```
+python -m pip install -r requirements.txt nuitka zstandard
+```
 
-- Run the following as an administrator:
+- Run the following (answer yes to any prompts):
 
-      pyinstaller sudomemoDNS_v1.2.1.spec
+```shell
+python -m nuitka --standalone --onefile --windows-icon-from-ico=sudomemoDNS_icon.ico -o sudomemoDNS.exe sudomemoDNS.py
+```
+
+- Run `sudomemoDNS.exe`

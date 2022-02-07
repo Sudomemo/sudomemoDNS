@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from json import loads
-from socket import socket, AF_INET, SOCK_DGRAM
+from socket import socket, AF_INET, SOCK_DGRAM, gethostbyname
 from sys import platform
 from time import sleep
 
@@ -182,7 +182,7 @@ for zone in zones:
     if zone["type"] == "a":
         ZONES[zone["name"]] = [Record(A, zone["value"])]
     elif zone["type"] == "p":
-        ZONES[zone["name"]] = [Record(A, socket.gethostbyname(zone["value"]))]
+        ZONES[zone["name"]] = [Record(A, gethostbyname(zone["value"]))]
 
 print("[INFO] DNS information loaded successfully.")
 
