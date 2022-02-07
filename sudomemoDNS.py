@@ -33,7 +33,7 @@ SUDOMEMODNS_VERSION = "1.2"
 # e.g `1.1.1.1` becomes `001.001.001.001`
 def format_ip(address):
     octets = str(address).split(".")
-    return f"{int(octets[0]):02d}.{int(octets[1]):02d}.{int(octets[2]):02d}.{int(octets[3]):02d}"
+    return f"{int(octets[0]):03d}.{int(octets[1]):03d}.{int(octets[2]):03d}.{int(octets[3]):03d}"
 
 
 def get_ip():
@@ -67,7 +67,7 @@ print("First, make sure that your console is connected to the same network as th
 
 print("Then, put these settings in for DNS on your console:")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print(f"Primary DNS:  {MY_IP}")
+print(f"Primary DNS:   {format_ip(MY_IP)}")
 print("Secondary DNS: 008.008.008.008")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
