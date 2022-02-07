@@ -26,7 +26,7 @@ def get_platform():
     return platforms[sys.platform]
 
 
-SUDOMEMODNS_VERSION = "1.2"
+SUDOMEMODNS_VERSION = "1.2.1"
 
 
 # Adds preceding zeros to IP addresses
@@ -55,7 +55,7 @@ MY_IP = get_ip()
 
 print("+===============================+")
 print("|      Sudomemo DNS Server      |")
-print(f"|          Version {SUDOMEMODNS_VERSION}          |")
+print(f"|         Version {SUDOMEMODNS_VERSION}         |")
 print("+===============================+\n")
 
 print("== Welcome to sudomemoDNS! ==")
