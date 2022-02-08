@@ -15,19 +15,21 @@ Run the .exe provided in this release. You may have to click past a warning from
 
 ## Running on anything else:
 
-Required packages (installable with pip): `requests`, `dnslib`
+Required packages are installable with the following command:
 
-Required Python version: 3+, tested with 3.6
+    sudo python3 -m pip install -r requirements.txt
 
-    sudo <name of your python binary> sudomemoDNS.py
+Required Python version: 3.6+, tested with 3.9.9
+
+    sudo python3 sudomemoDNS.py
+
+Note: `python3` is assumed to be the name of your python binary, if it is not then it will need to be substituted with the name and/or path of your binary.
 
 ## What you'll see when it starts up
 
-The following will display when you start it up:
-
     +===============================+
     |      Sudomemo DNS Server      |
-    |          Version 1.2          |
+    |         Version 1.2.1         |
     +===============================+
 
     == Welcome to sudomemoDNS! ==
@@ -40,24 +42,26 @@ The following will display when you start it up:
     Then, put these settings in for DNS on your console:
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Primary DNS:   XXX.XXX.XXX.XXX (NOTE: This value will be unique when you run the program)
-    Secondary DNS: 8.8.8.8
+    Secondary DNS: 008.008.008.008
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     == Getting Help ==
     Need help? Visit our Discord server or check out https://support.sudomemo.net
 
-When entering your DNS settings, if the Primary DNS is displayed like this (this is an example):
-
-192.168.1.7 
-
-then you can enter it as follows:
-
-192.168.001.007
-
 ## Building on Windows
 
-Install dnslib, requests, and pyinstaller via pip, then modify the paths in the spec file to where sudomemoDNS and the sudomemoDNS icon is stored.
+- Install Python 3.6+ (preferably 3.9). Make sure to install the x86 version for 32 bit targets. 
 
-Then, run the following as an administrator:
+- Install all requirements via the following command as an administrator
 
-    pyinstaller.exe sudomemoDNS_v1.2.spec
+```
+python -m pip install -r requirements.txt nuitka zstandard
+```
+
+- Run the following (answer yes to any prompts):
+
+```shell
+python -m nuitka --standalone --onefile --windows-icon-from-ico=sudomemoDNS_icon.ico -o sudomemoDNS.exe sudomemoDNS.py
+```
+
+- Run `sudomemoDNS.exe`
